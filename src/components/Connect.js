@@ -16,15 +16,13 @@ const Connect = ({
 }) => {
   async function switchToSepolia() {
     try {
-      // Request user to switch to Sepolia
       await window.ethereum.request({
         method: "wallet_switchEthereumChain",
-        params: [{ chainId: "0xaa36a7" }], // Chain ID for Sepolia in hexadecimal
+        params: [{ chainId: "0xaa36a7" }],
       });
     } catch (switchError) {
       if (switchError.code === 4902) {
         try {
-          // If Sepolia is not added to user's MetaMask, add it
           await window.ethereum.request({
             method: "wallet_addEthereumChain",
             params: [
@@ -58,11 +56,9 @@ const Connect = ({
         });
 
         if (networkId !== "100") {
-          // Network ID for Sepolia
           await switchToSepolia();
         }
 
-        // user enables the app to connect to MetaMask
         const tempWeb3 = new Web3(window.ethereum);
         setWeb3(tempWeb3);
         const contractInstance = new tempWeb3.eth.Contract(

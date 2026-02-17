@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const AddTweet = ({ contract, account, getTweets }) => {
   const [newTweet, setNewTweet] = useState("");
@@ -7,7 +7,7 @@ const AddTweet = ({ contract, account, getTweets }) => {
   async function createTweet(tweet) {
     if (!contract || !account) {
       console.error(
-        "Web3 or contract not initialized or account not connected."
+        "Web3 or contract not initialized or account not connected.",
       );
       return;
     }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const ProfileCreation = ({ checkProfile, profileContract, account }) => {
   const [username, setUsername] = useState("");
@@ -10,7 +10,9 @@ const ProfileCreation = ({ checkProfile, profileContract, account }) => {
 
     try {
       setLoading(true);
-      await profileContract.methods.setProfile(username, bio).send({from: account})
+      await profileContract.methods
+        .setProfile(username, bio)
+        .send({ from: account });
       checkProfile();
     } catch (error) {
       console.error(error);

@@ -22,7 +22,6 @@ export default function App() {
     }
 
     const tempTweets = await contract.methods.getAllTweets(account).call();
-    // we do this so we can sort the tweets by timestamp
     const tweets = [...tempTweets];
     tweets.sort((a, b) => b.timestamp - a.timestamp);
     setTweets(tweets);
@@ -38,7 +37,7 @@ export default function App() {
   async function getProfile() {
     if (!web3 || !profileContract || !account) {
       console.error(
-        "Web3 or profileContract not initialized or account not connected."
+        "Web3 or profileContract not initialized or account not connected.",
       );
       return;
     }
